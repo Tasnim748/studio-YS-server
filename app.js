@@ -25,6 +25,13 @@ app.set('view engine', 'jade');
 //  next();
 // });
 
+const corsOptions = {
+  origin: 'http://localhost:4200',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+};
+
 
 // app configurations
 app.use(logger('dev'));
@@ -35,7 +42,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json({ limit: '15mb' }));
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(compression());
-// app.use(cors());
+app.use(cors(corsOptions));
 
 
 // routings
