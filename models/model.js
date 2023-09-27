@@ -16,5 +16,15 @@ const teamSchema = new mongoose.Schema({
 });
 const Team = mongoose.model('Team', teamSchema);
 
+const newsSchema = new mongoose.Schema({
+    category: String,
+    title: String,
+    details: String,
+    youtubeLink: String,
+    thumbnailLink: String
+});
+const News = mongoose.model('News', newsSchema);
+
 module.exports.Project = Project;
 module.exports.Team = Team;
+module.exports.News = News;

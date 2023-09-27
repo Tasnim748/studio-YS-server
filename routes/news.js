@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var { Team } = require('../models/model');
+var { News } = require('../models/model');
 var multer = require('multer');
 var deleteFile = require('../utils/delFile');
 const path = require('path');
@@ -17,12 +17,11 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
   limits:{fileSize: 10000000}, // Limit file size to 10MB
-}).single('img');
+}).single('nwimg');
 
 router.get('/', async (req, res) => {
-    const members = await Team.find();
-    // console.log(members)
-    return res.json(members);
+    const news = await News.find();
+    return res.json(news);
 });
 
 router.post('/', (req, res) => {
@@ -37,9 +36,10 @@ router.post('/', (req, res) => {
             } else {
                 let data = req.body;
                 const imgUrl = req.protocol + '://' + req.get('host') + `/images/${req.file.filename}`;
-                data.picLink = imgUrl;
-                let newTeam = new Team(data);
-                const savedInst = await newTeam.save();
+                data.thumbnailLink = imgUrl;
+                let newNews = new News(data);
+                const savedInst = await newNews.save();
+                console.log(savedInst);
                 return res.json({imgUrl: imgUrl, message: 'received', data: savedInst});
             }
         }
@@ -49,13 +49,13 @@ router.post('/', (req, res) => {
 router.delete('/', async (req, res) => {
     console.log(req.body._id);
     try {
-        let toBeDeleted = await Team.findById(req.body._id);
+        let toBeDeleted = await News.findById(req.body._id);
         console.log(toBeDeleted);
 
-        await Team.findByIdAndDelete(req.body._id);
+        await News.findByIdAndDelete(req.body._id);
         console.log('deleted');
 
-        const url = toBeDeleted.picLink;
+        const url = toBeDeleted.thumbnailLink;
         const filename = url.substring(url.lastIndexOf('/') + 1);
         console.log(filename);
         deleteFile(filename, res, "images")
@@ -64,6 +64,10 @@ router.delete('/', async (req, res) => {
         console.log('some wrong')
         return res.status(500).send('deletion error!');
     }
+})
+
+router.put('/', async (req, res) => {
+    return
 })
 
 module.exports = router;
