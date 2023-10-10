@@ -19,8 +19,8 @@ const Team = mongoose.model('Team', teamSchema);
 const newsSchema = new mongoose.Schema({
     category: String,
     title: String,
-    details: String,
-    youtubeLink: String,
+    description: String,
+    link: String,
     thumbnailLink: String
 });
 const News = mongoose.model('News', newsSchema);
