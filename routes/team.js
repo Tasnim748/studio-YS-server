@@ -36,7 +36,7 @@ router.post('/', (req, res) => {
                 return res.send({message: 'No file selected.'});
             } else {
                 let data = req.body;
-                const imgUrl = req.protocol + '://' + req.get('host') + `/images/${req.file.filename}`;
+                const imgUrl = 'https' + '://' + req.get('host') + `/images/${req.file.filename}`;
                 data.picLink = imgUrl;
                 let newTeam = new Team(data);
                 const savedInst = await newTeam.save();

@@ -35,7 +35,7 @@ router.post('/', (req, res) => {
                 return res.send({message: 'No file selected.'});
             } else {
                 let data = req.body;
-                const vidUrl = req.protocol + '://' + req.get('host') + `/videos/${req.file.filename}`;
+                const vidUrl = 'https' + '://' + req.get('host') + `/videos/${req.file.filename}`;
                 data.videoLink = vidUrl;
                 let newProj = new Project(data);
                 const savedInst = await newProj.save();
