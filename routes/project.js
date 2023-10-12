@@ -46,6 +46,7 @@ router.post('/', (req, res) => {
     });
 })
 
+
 router.delete('/', async (req, res) => {
     console.log(req.body._id);
     try {
@@ -67,7 +68,18 @@ router.delete('/', async (req, res) => {
 })
 
 router.put('/', async (req, res) => {
-    return
+    let _id = req.body._id;
+    console.log("before", req.body);
+    let toBeUpdated = delete req.body._id;
+    console.log("after", req.body);
+    console.log(toBeUpdated);
+    if (toBeUpdated) {
+        await Project.findByIdAndUpdate(_id, req.body);
+        let newThing = await Project.findById(_id);
+        console.log(newThing);
+        return res.json({message: 'update success', data: newThing});
+    }
+    return res.json({message: 'not found', status: 404});
 })
 
 module.exports = router;
