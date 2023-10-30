@@ -20,7 +20,7 @@ app.set('view engine', 'jade');
 
 // app configurations
 app.use(logger('dev'));
-app.use(bodyParser.json({ limit: '100mb' }));
+app.use(bodyParser.json({ limit: '1000mb' }));
 app.use(bodyParser.urlencoded({ limit: '100mb', extended: true }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
