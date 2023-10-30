@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 // Init upload
 const upload = multer({
   storage: storage,
-  limits:{fileSize: 1000000000}, // Limit file size to 100MB
+  limits:{fileSize: 1000000000}, // Limit file size to 1000MB
 }).single('vid');
 
 router.get('/', async (req, res) => {
