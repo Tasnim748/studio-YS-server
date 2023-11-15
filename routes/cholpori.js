@@ -9,6 +9,7 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     let data = req.body;
+    console.log(data);
     let newThing = new CholporiWords(data);
     const savedInst = await newThing.save();
     console.log(savedInst);
@@ -29,5 +30,12 @@ router.put('/:_id', async (req, res) => {
     }
     return res.json({message: 'not found', status: 404});
 });
+
+router.delete('/:id', async(req, res) => {
+    let _id = req.params['id'];
+    console.log(_id);
+    await CholporiWords.findByIdAndDelete(_id);
+    return res.json({'message': 'deletion processed'})
+})
 
 module.exports = router

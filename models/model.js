@@ -41,6 +41,6 @@ const cholporiWordsSchema = new mongoose.Schema({
     name: String,
     type: String
 })
-const CholporiWords = mongoose.model('CholporiWords', newsSchema);
+const CholporiWords = mongoose.model('CholporiWords', cholporiWordsSchema);
 
 module.exports.CholporiWords = CholporiWords;
