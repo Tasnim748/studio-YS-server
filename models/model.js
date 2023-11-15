@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 
+
+
+
+// for yellowsomething
 const projectSchema = new mongoose.Schema({
     title: String,
     videoLink: String,
@@ -28,3 +32,15 @@ const News = mongoose.model('News', newsSchema);
 module.exports.Project = Project;
 module.exports.Team = Team;
 module.exports.News = News;
+
+
+
+
+// for cholpori
+const cholporiWordsSchema = new mongoose.Schema({
+    name: String,
+    type: String
+})
+const CholporiWords = mongoose.model('CholporiWords', newsSchema);
+
+module.exports.CholporiWords = CholporiWords;
