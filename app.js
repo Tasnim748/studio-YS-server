@@ -2,16 +2,19 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var bodyParser = require('body-parser');
+
 // var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 
+// routers
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var projectRouter = require('./routes/project');
 var teamRouter = require('./routes/team');
 var newsRouter = require('./routes/news');
 var cholporiRouter = require('./routes/cholpori');
+var authenticationRouter = require('./routes/ysAuthentication');
 
 var app = express();
 
@@ -33,6 +36,7 @@ app.use('/teams', teamRouter);
 app.use('/users', usersRouter);
 app.use('/news', newsRouter);
 app.use('/cholpori', cholporiRouter);
+app.use('/authentication', authenticationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
